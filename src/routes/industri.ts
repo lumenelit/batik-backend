@@ -6,5 +6,6 @@ const RouterIndustri = express.Router();
 RouterIndustri.get('/', CtrlrIndustri.getAll);
 RouterIndustri.get('/:id', CtrlrIndustri.getById);
 RouterIndustri.post('/', CtrlrIndustri.addIndustri);
+RouterIndustri.patch('/:id', CtrlrIndustri.updateIndustri);
 
 module.exports = RouterIndustri;

@@ -7,7 +7,7 @@ export type TMotif = {
   nama: string;
   harga: number;
   desc: string;
-  varian: [string];
+  varian: any;
   image1: string;
   image2: string;
   image3: string;
@@ -38,7 +38,7 @@ const MotifSchema = new Schema<Omit<TMotif, '_id'>>(
       required: true,
     },
     varian: {
-      type: [String],
+      type: [Object],
       required: true,
     },
     image1: {
@@ -79,8 +79,14 @@ async function addMotif(motif: TMotif) {
   return result;
 }
 
+async function updateMotif(idMotif: string, data: Partial<TMotif>) {
+  const result = await ModelMotif.findOneAndUpdate({ idMotif: idMotif }, data);
+  return result;
+}
+
 export const ModuleMotif = {
   getAllMotif,
   getMotifById,
   addMotif,
+  updateMotif,
 };

@@ -94,8 +94,17 @@ async function addPesanan(data: TPesanan) {
   return result;
 }
 
+async function updatePesanan(idPesanan: string, data: Partial<TPesanan>) {
+  const result = await ModelPesanan.findOneAndUpdate(
+    { idPesanan: idPesanan },
+    data
+  );
+  return result;
+}
+
 export const ModulePesanan = {
   getAllPesanan,
   getPesananById,
   addPesanan,
+  updatePesanan,
 };

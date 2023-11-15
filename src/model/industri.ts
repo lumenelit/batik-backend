@@ -12,6 +12,9 @@ export type TIndustri = {
   alamatCabang: [string];
   eCommerce: any;
   sosmed: any;
+  image1: string;
+  image2: string;
+  image3: string;
   updatedAt: any;
   createdAt: any;
 };
@@ -58,6 +61,18 @@ const IndustriSchema = new Schema<Omit<TIndustri, '_id'>>(
       type: Object,
       required: true,
     },
+    image1: {
+      type: String,
+      required: true,
+    },
+    image2: {
+      type: String,
+      required: true,
+    },
+    image3: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -84,8 +99,17 @@ async function addIndustri(data: TIndustri) {
   return newIndustri;
 }
 
+async function updateIndustri(idIndustri: string, data: Partial<TIndustri>) {
+  const result = await ModelIndustri.findOneAndUpdate(
+    { idIndustri: idIndustri },
+    data
+  );
+  return result;
+}
+
 export const ModuleIndustri = {
   getAllIndustri,
   getIndustriById,
   addIndustri,
+  updateIndustri,
 };
