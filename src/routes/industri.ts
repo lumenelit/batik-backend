@@ -7,5 +7,6 @@ RouterIndustri.get('/', CtrlrIndustri.getAll);
 RouterIndustri.get('/:id', CtrlrIndustri.getById);
 RouterIndustri.post('/', CtrlrIndustri.addIndustri);
 RouterIndustri.patch('/:id', CtrlrIndustri.updateIndustri);
+RouterIndustri.delete('/:id', CtrlrIndustri.deleteIndustri);
 
 module.exports = RouterIndustri;

@@ -8,5 +8,6 @@ RouterMotif.get('/:id', CtrlrMotif.getMotifById);
 RouterMotif.get('/industri/:id', CtrlrMotif.getMotifByIndustriId);
 RouterMotif.post('/', CtrlrMotif.addMotif);
 RouterMotif.patch('/:id', CtrlrMotif.updateMotif);
+RouterMotif.delete('/:id', CtrlrMotif.deleteMotif);
 
 module.exports = RouterMotif;

@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 export type TIndustri = {
   _id: string;
@@ -19,65 +19,65 @@ export type TIndustri = {
   createdAt: any;
 };
 
-const IndustriSchema = new Schema<Omit<TIndustri, "_id">>(
+const IndustriSchema = new Schema<Omit<TIndustri, '_id'>>(
   {
     idIndustri: {
       type: String,
-      required: true,
+      required: true
     },
     nama: {
       type: String,
-      required: true,
+      required: true
     },
     pemilik: {
       type: String,
-      required: true,
+      required: true
     },
     kontak: {
       type: String,
-      required: true,
+      required: true
     },
     desc: {
       type: String,
-      required: true,
+      required: true
     },
     alamat: {
       type: String,
-      required: true,
+      required: true
     },
     coordinate: {
       type: Object,
-      required: true,
+      required: true
     },
     alamatCabang: {
       type: [String],
-      required: true,
+      required: true
     },
     eCommerce: {
       type: Object,
-      required: true,
+      required: true
     },
     sosmed: {
       type: Object,
-      required: true,
+      required: true
     },
     image1: {
       type: String,
-      required: true,
+      required: true
     },
     image2: {
       type: String,
-      required: true,
+      required: true
     },
     image3: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   { timestamps: true }
 );
 
-const ModelIndustri = mongoose.model("Industri", IndustriSchema);
+const ModelIndustri = mongoose.model('Industri', IndustriSchema);
 
 export default ModelIndustri;
 
@@ -107,9 +107,17 @@ async function updateIndustri(idIndustri: string, data: Partial<TIndustri>) {
   return result;
 }
 
+async function deleteIndustri(idIndustri: string) {
+  const result = await ModelIndustri.findOneAndDelete({
+    idIndustri: idIndustri
+  });
+  return result;
+}
+
 export const ModuleIndustri = {
   getAllIndustri,
   getIndustriById,
   addIndustri,
   updateIndustri,
+  deleteIndustri
 };

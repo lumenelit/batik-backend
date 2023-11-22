@@ -89,10 +89,16 @@ async function updateMotif(idMotif: string, data: Partial<TMotif>) {
   return result;
 }
 
+async function deleteMotif(idMotif: string) {
+  const result = await ModelMotif.findOneAndDelete({ idMotif: idMotif });
+  return result;
+}
+
 export const ModuleMotif = {
   getAllMotif,
   getMotifById,
   getMotifByIndustriId,
   addMotif,
-  updateMotif
+  updateMotif,
+  deleteMotif
 };
