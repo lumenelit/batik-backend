@@ -1,5 +1,5 @@
-import { ModuleIndustri } from '../../model/industri';
-import { ModuleMotif } from '../../model/motif';
+import { ModuleIndustri } from "../../model/industri";
+import { ModuleMotif } from "../../model/motif";
 
 export default async function getIndustriById(req, res) {
   try {
@@ -11,7 +11,7 @@ export default async function getIndustriById(req, res) {
     if (industri.length === 0) {
       return res.status(404).json({
         status: false,
-        message: 'Industri not found',
+        message: "Industri not found",
       });
     }
 
@@ -22,6 +22,7 @@ export default async function getIndustriById(req, res) {
       result.push({
         idIndustri: element.idIndustri,
         namaIndustri: element.nama,
+        pemilik: element.pemilik,
         kontak: element.kontak,
         desc: element.desc,
         alamat: element.alamat,
@@ -38,14 +39,14 @@ export default async function getIndustriById(req, res) {
 
     res.json({
       status: true,
-      message: 'Success get data',
+      message: "Success get data",
       data: result,
     });
   } catch (err) {
     console.log(err);
     res.status(500).json({
       status: false,
-      message: 'Internal server error',
+      message: "Internal server error",
     });
   }
 }

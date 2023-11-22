@@ -1,5 +1,5 @@
-import { ModuleIndustri } from '../../model/industri';
-import { ModuleMotif } from '../../model/motif';
+import { ModuleIndustri } from "../../model/industri";
+import { ModuleMotif } from "../../model/motif";
 
 export default async function getAll(req, res) {
   try {
@@ -14,6 +14,7 @@ export default async function getAll(req, res) {
       result.push({
         idIndustri: element.idIndustri,
         namaIndustri: element.nama,
+        pemilik: element.pemilik,
         kontak: element.kontak,
         desc: element.desc,
         alamat: element.alamat,
@@ -30,14 +31,14 @@ export default async function getAll(req, res) {
 
     res.json({
       status: true,
-      message: 'Success get all data',
+      message: "Success get all data",
       data: result,
     });
   } catch (err) {
     console.log(err);
     res.status(500).json({
       status: false,
-      message: 'Internal server error',
+      message: "Internal server error",
     });
   }
 }

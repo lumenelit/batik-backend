@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
 export type TIndustri = {
   _id: string;
@@ -19,7 +19,7 @@ export type TIndustri = {
   createdAt: any;
 };
 
-const IndustriSchema = new Schema<Omit<TIndustri, '_id'>>(
+const IndustriSchema = new Schema<Omit<TIndustri, "_id">>(
   {
     idIndustri: {
       type: String,
@@ -77,7 +77,7 @@ const IndustriSchema = new Schema<Omit<TIndustri, '_id'>>(
   { timestamps: true }
 );
 
-const ModelIndustri = mongoose.model('Industri', IndustriSchema);
+const ModelIndustri = mongoose.model("Industri", IndustriSchema);
 
 export default ModelIndustri;
 
