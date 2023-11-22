@@ -19,40 +19,40 @@ const MotifSchema = new Schema<Omit<TMotif, '_id'>>(
   {
     idMotif: {
       type: String,
-      required: true,
+      required: true
     },
     idIndustri: {
       type: String,
-      required: true,
+      required: true
     },
     nama: {
       type: String,
-      required: true,
+      required: true
     },
     harga: {
       type: Number,
-      required: true,
+      required: true
     },
     desc: {
       type: String,
-      required: true,
+      required: true
     },
     varian: {
       type: [Object],
-      required: true,
+      required: true
     },
     image1: {
       type: String,
-      required: true,
+      required: true
     },
     image2: {
       type: String,
-      required: true,
+      required: true
     },
     image3: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   { timestamps: true }
 );
@@ -73,6 +73,11 @@ async function getMotifById(idMotif: string) {
   return result;
 }
 
+async function getMotifByIndustriId(idIndustri: string) {
+  const result = await ModelMotif.find({ idIndustri: idIndustri });
+  return result;
+}
+
 async function addMotif(motif: TMotif) {
   const newMotif = new ModelMotif(motif);
   const result = await newMotif.save();
@@ -87,6 +92,7 @@ async function updateMotif(idMotif: string, data: Partial<TMotif>) {
 export const ModuleMotif = {
   getAllMotif,
   getMotifById,
+  getMotifByIndustriId,
   addMotif,
-  updateMotif,
+  updateMotif
 };
