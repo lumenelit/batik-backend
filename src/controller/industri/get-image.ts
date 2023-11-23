@@ -1,11 +1,18 @@
 import { ModuleIndustri } from "../../model/industri";
-import { ModuleMotif } from "../../model/motif";
 
-export default async function getAll(req, res) {
+export default async function getIndustriImageById(req, res) {
   try {
-    let result = [];
-    const industri = await ModuleIndustri.getAllIndustri();
+    const { id } = req.params;
+    const result = [];
+    const industri = await ModuleIndustri.getIndustriImageById(id);
     // const motif = await ModuleMotif.getAllMotif();
+
+    if (industri.length === 0) {
+      return res.status(404).json({
+        status: false,
+        message: "Industri image not found",
+      });
+    }
 
     // industri.forEach((element) => {
     //   const motifIndustri = motif.filter((motif) => {
@@ -25,15 +32,15 @@ export default async function getAll(req, res) {
     //     image1: element.image1,
     //     image2: element.image2,
     //     image3: element.image3,
-    //     motif: motifIndustri,
+    //     // motif: motifIndustri,
     //   });
     // });
 
     res.json({
       status: true,
-      message: "Success get all data",
-      // data: result,
+      message: "Success get data",
       data: industri,
+      // data: result,
     });
   } catch (err) {
     console.log(err);
