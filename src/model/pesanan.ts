@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 export type TPesanan = {
   _id: string;
-  idPesanan: string;
+  // idPesanan: string;
   namaPembeli: string;
   namaPenerima: string;
   kontakPembeli: string;
@@ -20,54 +20,54 @@ export type TPesanan = {
 
 const PesananSchema = new Schema<Omit<TPesanan, '_id'>>(
   {
-    idPesanan: {
-      type: String,
-      required: true,
-    },
+    // idPesanan: {
+    //   type: String,
+    //   required: true,
+    // },
     namaPembeli: {
       type: String,
-      required: true,
+      required: true
     },
     namaPenerima: {
       type: String,
-      required: true,
+      required: true
     },
     kontakPembeli: {
       type: String,
-      required: true,
+      required: true
     },
     kontakPenerima: {
       type: String,
-      required: true,
+      required: true
     },
     alamat: {
       type: String,
-      required: true,
+      required: true
     },
     namaMotif: {
       type: String,
-      required: true,
+      required: true
     },
     metodePengiriman: {
       type: String,
-      required: true,
+      required: true
     },
     reqTambahan: {
       type: String,
-      required: true,
+      required: true
     },
     jumlah: {
       type: Number,
-      required: true,
+      required: true
     },
     hargaMotif: {
       type: Number,
-      required: true,
+      required: true
     },
     totalHarga: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   { timestamps: true }
 );
@@ -84,7 +84,7 @@ async function getAllPesanan() {
 }
 
 async function getPesananById(id: string) {
-  const result = await ModelPesanan.find({ idPesanan: id });
+  const result = await ModelPesanan.find({ _id: id });
   return result;
 }
 
@@ -95,10 +95,7 @@ async function addPesanan(data: TPesanan) {
 }
 
 async function updatePesanan(idPesanan: string, data: Partial<TPesanan>) {
-  const result = await ModelPesanan.findOneAndUpdate(
-    { idPesanan: idPesanan },
-    data
-  );
+  const result = await ModelPesanan.findOneAndUpdate({ _id: idPesanan }, data);
   return result;
 }
 
@@ -106,5 +103,5 @@ export const ModulePesanan = {
   getAllPesanan,
   getPesananById,
   addPesanan,
-  updatePesanan,
+  updatePesanan
 };
