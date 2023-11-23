@@ -10,7 +10,7 @@ export default async function updateIndustri(req, res) {
     if (check.length === 0) {
       return res.status(404).json({
         status: false,
-        message: 'Industri not found',
+        message: 'Industri not found'
       });
     }
 
@@ -19,13 +19,13 @@ export default async function updateIndustri(req, res) {
     res.json({
       status: true,
       message: 'Success update data',
-      data: result,
+      data: result
     });
   } catch (err) {
     console.log(err);
     res.status(500).json({
       status: false,
-      message: 'Internal server error',
+      message: 'Internal server error'
     });
   }
 }

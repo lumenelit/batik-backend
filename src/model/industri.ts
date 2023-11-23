@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 export type TIndustri = {
   nama: string;
@@ -17,79 +17,79 @@ export type TIndustri = {
   createdAt: any;
 };
 
-const IndustriSchema = new Schema<Omit<TIndustri, "_id">>(
+const IndustriSchema = new Schema<Omit<TIndustri, '_id'>>(
   {
     nama: {
       type: String,
-      required: true,
+      required: true
     },
     pemilik: {
       type: String,
-      required: true,
+      required: true
     },
     kontak: {
       type: String,
-      required: true,
+      required: true
     },
     desc: {
       type: String,
-      required: true,
+      required: true
     },
     alamat: {
       type: String,
-      required: true,
+      required: true
     },
     coordinate: {
       type: Object,
-      required: true,
+      required: true
     },
     alamatCabang: {
       type: [String],
-      required: true,
+      required: true
     },
     eCommerce: {
-      type: Object,
+      type: Object
     },
     sosmed: {
-      type: Object,
+      type: Object
     },
     image1: {
-      type: String,
-      required: true,
+      type: String
+      // required: true,
     },
     image2: {
-      type: String,
-      required: true,
+      type: String
+      // required: true,
     },
     image3: {
-      type: String,
-      required: true,
-    },
+      type: String
+      // required: true,
+    }
   },
   { timestamps: true }
 );
 
-const ModelIndustri = mongoose.model("Industri", IndustriSchema);
+const ModelIndustri = mongoose.model('Industri', IndustriSchema);
 
 export default ModelIndustri;
 
 // Module Industri
 
 async function getAllIndustri() {
-  const result = await ModelIndustri.find({}, "-image1 -image2 -image3");
+  const result = await ModelIndustri.find({}, '-image1 -image2 -image3');
   return result;
 }
 
 async function getIndustriById(id: string) {
   const result = await ModelIndustri.find(
     { _id: id },
-    "-image1 -image2 -image3"
+    '-image1 -image2 -image3'
   );
   // console.log(result);
   return result;
 }
 async function getIndustriImageById(id: string) {
-  const result = await ModelIndustri.find({ _id: id }, "image1 image2 image3");
+  const result = await ModelIndustri.find({ _id: id }, 'image1 image2 image3');
   // console.log(result);
   return result;
 }
@@ -107,7 +107,7 @@ async function updateIndustri(_id: string, data: Partial<TIndustri>) {
 
 async function deleteIndustri(_id: string) {
   const result = await ModelIndustri.findOneAndDelete({
-    _id: _id,
+    _id: _id
   });
   return result;
 }
@@ -118,5 +118,5 @@ export const ModuleIndustri = {
   addIndustri,
   updateIndustri,
   deleteIndustri,
-  getIndustriImageById,
+  getIndustriImageById
 };
