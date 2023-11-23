@@ -1,8 +1,8 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 export type TMotif = {
   _id: string;
-  idMotif: string;
+  // idMotif: string;
   idIndustri: string;
   nama: string;
   harga: number;
@@ -15,74 +15,74 @@ export type TMotif = {
   createdAt: any;
 };
 
-const MotifSchema = new Schema<Omit<TMotif, "_id">>(
+const MotifSchema = new Schema<Omit<TMotif, '_id'>>(
   {
-    idMotif: {
-      type: String,
-      required: true,
-    },
+    // idMotif: {
+    //   type: String,
+    //   required: true,
+    // },
     idIndustri: {
       type: String,
-      required: true,
+      required: true
     },
     nama: {
       type: String,
-      required: true,
+      required: true
     },
     harga: {
       type: Number,
-      required: true,
+      required: true
     },
     desc: {
       type: String,
-      required: true,
+      required: true
     },
     varian: {
       type: [Object],
-      required: true,
+      required: true
     },
     image1: {
-      type: String,
-      required: true,
+      type: String
+      // required: true
     },
     image2: {
-      type: String,
+      type: String
     },
     image3: {
-      type: String,
-    },
+      type: String
+    }
   },
   { timestamps: true }
 );
 
-const ModelMotif = mongoose.model("Motif", MotifSchema);
+const ModelMotif = mongoose.model('Motif', MotifSchema);
 
 export default ModelMotif;
 
 //Module Motif
 
 async function getAllMotif() {
-  const result = await ModelMotif.find({}, "-image1 -image2 -image3");
+  const result = await ModelMotif.find({}, '-image1 -image2 -image3');
   return result;
 }
 
 async function getMotifById(idMotif: string) {
   const result = await ModelMotif.find(
     { _id: idMotif },
-    "-image1 -image2 -image3"
+    '-image1 -image2 -image3'
   );
   return result;
 }
 async function getMotifImageById(idMotif: string) {
   const result = await ModelMotif.find(
     { _id: idMotif },
-    "image1 image2 image3"
+    'image1 image2 image3'
   );
   return result;
 }
 
 async function getMotifByIndustriId(_id: string) {
-  const result = await ModelMotif.find({ idIndustri: _id }, "-image2 -image3");
+  const result = await ModelMotif.find({ idIndustri: _id }, '-image2 -image3');
   return result;
 }
 
@@ -93,12 +93,12 @@ async function addMotif(motif: TMotif) {
 }
 
 async function updateMotif(idMotif: string, data: Partial<TMotif>) {
-  const result = await ModelMotif.findOneAndUpdate({ idMotif: idMotif }, data);
+  const result = await ModelMotif.findOneAndUpdate({ _id: idMotif }, data);
   return result;
 }
 
 async function deleteMotif(idMotif: string) {
-  const result = await ModelMotif.findOneAndDelete({ idMotif: idMotif });
+  const result = await ModelMotif.findOneAndDelete({ _id: idMotif });
   return result;
 }
 
@@ -109,5 +109,5 @@ export const ModuleMotif = {
   addMotif,
   updateMotif,
   deleteMotif,
-  getMotifImageById,
+  getMotifImageById
 };
