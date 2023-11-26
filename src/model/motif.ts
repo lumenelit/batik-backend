@@ -9,8 +9,8 @@ export type TMotif = {
   desc: string;
   varian: any;
   image1: string;
-  image2: string;
-  image3: string;
+  // image2: string;
+  // image3: string;
   updatedAt: any;
   createdAt: any;
 };
@@ -45,12 +45,12 @@ const MotifSchema = new Schema<Omit<TMotif, '_id'>>(
       type: String
       // required: true
     },
-    image2: {
-      type: String
-    },
-    image3: {
-      type: String
-    }
+    // image2: {
+    //   type: String
+    // },
+    // image3: {
+    //   type: String
+    // }
   },
   { timestamps: true }
 );
@@ -78,6 +78,7 @@ async function getMotifImageById(idMotif: string) {
     { _id: idMotif },
     'image1 image2 image3'
   );
+  console.log(result)
   return result;
 }
 

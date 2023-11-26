@@ -11,8 +11,8 @@ export type TIndustri = {
   eCommerce: any;
   sosmed: any;
   image1: string;
-  // image2: string;
-  // image3: string;
+  image2: string;
+  image3: string;
   updatedAt: any;
   createdAt: any;
 };
@@ -57,14 +57,14 @@ const IndustriSchema = new Schema<Omit<TIndustri, '_id'>>(
       type: String
       // required: true,
     },
-    // image2: {
-    //   type: String
-    //   // required: true,
-    // },
-    // image3: {
-    //   type: String
-    //   // required: true,
-    // }
+    image2: {
+      type: String
+      // required: true,
+    },
+    image3: {
+      type: String
+      // required: true,
+    }
   },
   { timestamps: true }
 );
@@ -85,11 +85,13 @@ async function getIndustriById(id: string) {
     { _id: id },
     '-image1 -image2 -image3'
   );
-  // console.log(result);
+  
+  console.log(result);
+  console.log(id);
   return result;
 }
 async function getIndustriImageById(id: string) {
-  const result = await ModelIndustri.find({ _id: id }, 'image1');
+  const result = await ModelIndustri.find({ _id: id }, 'image1 image2 image3');
   // console.log(result);
   return result;
 }

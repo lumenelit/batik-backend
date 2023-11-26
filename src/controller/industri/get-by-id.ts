@@ -4,7 +4,6 @@ import { ModuleMotif } from "../../model/motif";
 export default async function getIndustriById(req, res) {
   try {
     const { id } = req.params;
-    const result = [];
     const industri = await ModuleIndustri.getIndustriById(id);
     // const motif = await ModuleMotif.getAllMotif();
 
