@@ -7,5 +7,6 @@ RouterPesanan.get('/', CtrlrPesanan.getAllPesanan);
 RouterPesanan.get('/:id', CtrlrPesanan.getPesananById);
 RouterPesanan.post('/', CtrlrPesanan.addPesanan);
 RouterPesanan.patch('/:id', CtrlrPesanan.updatePesanan);
+RouterPesanan.delete('/:id', CtrlrPesanan.deletePesanan);
 
 module.exports = RouterPesanan;

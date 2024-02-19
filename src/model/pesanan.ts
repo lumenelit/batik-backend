@@ -1,9 +1,10 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
 export type TPesanan = {
   _id: string;
-  // idPesanan: string;
+  isDone: boolean;
   namaPembeli: string;
+  idMotif: string;
   namaPenerima: string;
   kontakPembeli: string;
   kontakPenerima: string;
@@ -18,61 +19,66 @@ export type TPesanan = {
   createdAt: any;
 };
 
-const PesananSchema = new Schema<Omit<TPesanan, '_id'>>(
+const PesananSchema = new Schema<Omit<TPesanan, "_id">>(
   {
-    // idPesanan: {
-    //   type: String,
-    //   required: true,
-    // },
+    idMotif: {
+      type: String,
+      required: true,
+    },
+    isDone: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
     namaPembeli: {
       type: String,
-      required: true
+      required: true,
     },
     namaPenerima: {
       type: String,
-      required: true
+      required: true,
     },
     kontakPembeli: {
       type: String,
-      required: true
+      required: true,
     },
     kontakPenerima: {
       type: String,
-      required: true
+      required: true,
     },
     alamat: {
       type: String,
-      required: true
+      required: true,
     },
     namaMotif: {
       type: String,
-      required: true
+      required: true,
     },
     metodePengiriman: {
       type: String,
-      required: true
+      required: true,
     },
     reqTambahan: {
       type: String,
-      required: true
+      required: true,
     },
     jumlah: {
       type: Number,
-      required: true
+      required: true,
     },
     hargaMotif: {
       type: Number,
-      required: true
+      required: true,
     },
     totalHarga: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-const ModelPesanan = mongoose.model('Pesanan', PesananSchema);
+const ModelPesanan = mongoose.model("Pesanan", PesananSchema);
 
 export default ModelPesanan;
 
@@ -99,9 +105,15 @@ async function updatePesanan(idPesanan: string, data: Partial<TPesanan>) {
   return result;
 }
 
+async function deletePesanan(idPesanan: string) {
+  const result = await ModelPesanan.deleteOne({ _id: idPesanan });
+  return result;
+}
+
 export const ModulePesanan = {
   getAllPesanan,
   getPesananById,
   addPesanan,
-  updatePesanan
+  updatePesanan,
+  deletePesanan,
 };
