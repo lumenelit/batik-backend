@@ -1,3 +1,5 @@
-import app from '..';
+import { startServer } from '..';
 
-export default app;
+export default async function start() {
+  await startServer();
+}
