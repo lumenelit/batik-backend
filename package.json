@@ -2,10 +2,10 @@
   "name": "backend-batik",
   "version": "1.0.0",
   "description": "",
-  "main": "src/main.ts",
+  "main": "index.ts",
   "scripts": {
-    "prestart": "npm i",
-    "start": "nodemon src/main.ts",
+    "prestart": "npm install",
+    "start": "nodemon index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

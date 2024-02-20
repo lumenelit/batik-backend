@@ -43,11 +43,11 @@ const startServer = async () => {
       res.send('Express + TypeScript Server');
     });
 
-    RouterApi.use('/industri', require('./routes/industri'));
+    RouterApi.use('/industri', require('./src/routes/industri'));
 
-    RouterApi.use('/motif', require('./routes/motif'));
+    RouterApi.use('/motif', require('./src/routes/motif'));
 
-    RouterApi.use('/pesanan', require('./routes/pesanan'));
+    RouterApi.use('/pesanan', require('./src/routes/pesanan'));
 
     app.listen(port, () => {
       console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
