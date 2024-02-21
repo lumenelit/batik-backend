@@ -38,7 +38,7 @@ app.use('/api', RouterApi);
 
 export const startServer = async () => {
   try {
-    await ConnectDB();
+    // await ConnectDB();
     RouterApi.get('/', (req: Request, res: Response) => {
       res.send('Express + TypeScript Server');
     });
