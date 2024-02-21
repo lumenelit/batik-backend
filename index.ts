@@ -5,14 +5,13 @@ import mongoose from 'mongoose';
 dotenv.config();
 
 const ConnectDB = async () => {
-  const MONGODB_URI = `${process.env.MONGODB_URI}`;
+  const MongoURI = `${process.env.DATABASE}`;
   try {
-    mongoose.set('strictQuery', false);
-    await mongoose.connect(MONGODB_URI);
-    console.log('Connected to database');
-  } catch (error) {
-    console.error('MongoDB connection error:', error);
-    throw error;
+    await mongoose.connect(MongoURI);
+    console.log('MongoDB Connected');
+  } catch (err) {
+    console.error('MongoDB Connection Error:', err);
+    throw err;
   }
 };
 
