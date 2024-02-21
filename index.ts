@@ -57,4 +57,4 @@ app.use('/api', RouterApi);
   }
 })();
 
-export default app;
+module.exports = app;
