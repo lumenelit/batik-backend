@@ -36,7 +36,7 @@ app.use(cors());
 
 app.use('/api', RouterApi);
 
-export const startServer = async () => {
+(async () => {
   try {
     // await ConnectDB();
     RouterApi.get('/', (req: Request, res: Response) => {
@@ -55,6 +55,6 @@ export const startServer = async () => {
   } catch (error) {
     console.error('Error starting the server:', error);
   }
-};
+})();
 
-startServer();
+export default app;
