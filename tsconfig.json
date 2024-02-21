@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,10 +13,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
 
     "outDir": "./dist",
     "strict": true
   },
-  "include": ["./api/*.ts", "./src", "index.ts"]
+  "include": ["./api/*.ts", "./src", "index.ts", "src/**/*.ts"]
 }
