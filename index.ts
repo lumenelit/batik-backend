@@ -35,9 +35,9 @@ RouterApi.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 
-RouterApi.use('/industri', require('./src/routes/industri'));
-RouterApi.use('/motif', require('./src/routes/motif'));
-RouterApi.use('/pesanan', require('./src/routes/pesanan'));
+// RouterApi.use('/industri', require('./src/routes/industri'));
+// RouterApi.use('/motif', require('./src/routes/motif'));
+// RouterApi.use('/pesanan', require('./src/routes/pesanan'));
 
 // Jalankan server
 app.listen(port, () => {
