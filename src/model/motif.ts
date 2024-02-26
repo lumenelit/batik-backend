@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
 export type TMotif = {
   _id: string;
@@ -15,7 +15,7 @@ export type TMotif = {
   createdAt: any;
 };
 
-const MotifSchema = new Schema<Omit<TMotif, '_id'>>(
+const MotifSchema = new Schema<Omit<TMotif, "_id">>(
   {
     // idMotif: {
     //   type: String,
@@ -23,26 +23,26 @@ const MotifSchema = new Schema<Omit<TMotif, '_id'>>(
     // },
     idIndustri: {
       type: String,
-      required: true
+      required: true,
     },
     nama: {
       type: String,
-      required: true
+      required: true,
     },
     harga: {
       type: Number,
-      required: true
+      required: true,
     },
     desc: {
       type: String,
-      required: true
+      required: true,
     },
     varian: {
       type: [Object],
-      required: true
+      required: true,
     },
     image1: {
-      type: String
+      type: String,
       // required: true
     },
     // image2: {
@@ -55,35 +55,41 @@ const MotifSchema = new Schema<Omit<TMotif, '_id'>>(
   { timestamps: true }
 );
 
-const ModelMotif = mongoose.model('Motif', MotifSchema);
+const ModelMotif = mongoose.model("Motif", MotifSchema);
 
 export default ModelMotif;
 
 //Module Motif
 
 async function getAllMotif() {
-  const result = await ModelMotif.find({}, '-image1 -image2 -image3');
+  const result = await ModelMotif.find({}, "-image1 -image2 -image3");
   return result;
 }
 
 async function getMotifById(idMotif: string) {
   const result = await ModelMotif.find(
     { _id: idMotif },
-    '-image1 -image2 -image3'
+    "-image1 -image2 -image3"
   );
   return result;
 }
 async function getMotifImageById(idMotif: string) {
   const result = await ModelMotif.find(
     { _id: idMotif },
-    'image1 image2 image3'
+    "image1 image2 image3"
   );
-  console.log(result)
+  console.log(result);
   return result;
 }
 
-async function getMotifByIndustriId(_id: string) {
-  const result = await ModelMotif.find({ idIndustri: _id }, '-image2 -image3');
+async function getMotifByIndustriId(
+  _id: string,
+  skip: number,
+  pageSize: number
+) {
+  const result = await ModelMotif.find({ idIndustri: _id }, "-image2 -image3")
+    .skip(skip)
+    .limit(pageSize);
   return result;
 }
 
@@ -110,5 +116,5 @@ export const ModuleMotif = {
   addMotif,
   updateMotif,
   deleteMotif,
-  getMotifImageById
+  getMotifImageById,
 };
